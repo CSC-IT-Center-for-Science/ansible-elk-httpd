@@ -34,4 +34,5 @@ programs_on_boot:
 
 elasticsearch_index_base: "demo"
 esb: "{{ elasticsearch_index_base }}"
+es_address: "localhost"
 
