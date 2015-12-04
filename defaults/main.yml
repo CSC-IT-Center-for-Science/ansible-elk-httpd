@@ -13,6 +13,7 @@ AuthLDAPURL:
 # require_users - a space separated list - if not set then Require valid-user
 require_users: ""
 
+# This sets up SSLEngine in httpd.conf
 kibana4_https: True
 
 programs_to_install:
