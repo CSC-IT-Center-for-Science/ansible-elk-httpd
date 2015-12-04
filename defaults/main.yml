@@ -31,3 +31,7 @@ el7programs_to_install:
 programs_on_boot:
   - logstash
   - httpd
+
+elasticsearch_index_base: "demo"
+esb: "{{ elasticsearch_index_base }}"
+
