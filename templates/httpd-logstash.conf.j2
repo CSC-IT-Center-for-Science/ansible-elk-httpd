@@ -67,7 +67,7 @@ Listen 8444
         ServerAdmin admin@{{ ansible_nodename }}
         ServerName localhost
         ErrorLog logs/es_k4_error_log
-#        TransferLog logs/es_k4_access_log
+        TransferLog /dev/null
         LogLevel warn
 
         <Directory "/">
