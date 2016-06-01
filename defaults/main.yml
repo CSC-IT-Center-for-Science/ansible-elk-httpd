@@ -36,3 +36,4 @@ elasticsearch_index_base: "demo"
 esb: "{{ elasticsearch_index_base }}"
 es_address: "localhost"
 
+elk_httpd_es_put_del_post_password: "12Mg8kRpu2lOQS8RDjiOydHUApEh1RNV"

@@ -1,11 +1,11 @@
-# {{ ansible_managed }}
+# Managed by ansible
 # Source: https://gist.github.com/jerrac/6382702
 # Intention: Have ElasticSearch not directly accessible but instead
 #  proxied. To filter and pass all http connections to https.
 
 ## 80 > /var/www/html/demo-kibana
 ## 80 > localhost:9199 for the allowed ES queries
-## 443 > localhost:5691 for kibana4
+## 443 > localhost:5601 for kibana4
 ## 8444 > localhost:9199 for kibana4 ES queries
 #
 
@@ -26,7 +26,7 @@ LoadModule proxy_http_module modules/mod_proxy_http.so
 	<Directory "/">
 	    # Don't allow PUT or DELETE http commands
             <Limit PUT DELETE POST>
-                    Require user 12Mg8kRpu2lOQS8RDjiOydHUApEh1RNV
+                    Require user {{ elk_httpd_es_put_del_post_password }}
             </Limit>
 	</Directory>
 		
@@ -165,7 +165,7 @@ Listen 443
         <Directory "/">
             # Don't allow PUT or DELETE http commands
             <Limit PUT DELETE POST>
-                    Require user 12Mg8kRpu2lOQS8RDjiOydHUApEh1RNV
+                    Require user {{ elk_httpd_es_put_del_post_password }}
             </Limit>
         </Directory>
 
