@@ -19,18 +19,18 @@
   - name: install software from logstash repo
     # If we set state=latest this takes a long time to run.
     yum: "pkg={{item}} state=installed"
-    with_items: programs_to_install
+    with_items: "{{ programs_to_install }}"
     when: ansible_distribution_major_version == "6"
 
   - name: install software from logstash repo EL7
     # If we set state=latest this takes a long time to run.
     yum: "pkg={{item}} state=installed"
-    with_items: el7programs_to_install
+    with_items: "{{ el7programs_to_install }}"
     when: ansible_distribution_major_version == "7"
 
   - name: enable services on boot
     service: name={{item}} enabled=yes
-    with_items: programs_on_boot
+    with_items: "{{ programs_on_boot }}”
 
   - name: start httpd
     service: name=httpd state=started
