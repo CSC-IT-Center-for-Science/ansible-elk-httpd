@@ -33,7 +33,7 @@
     with_items: "{{ programs_on_boot }}"
 
   - name: start httpd
-    service: name=httpd state=started
+    service: name=httpd state=started enabled=yes
 
   - name: restart httpd if httpdconfig or certs has changed
     service: name=httpd state=restarted
