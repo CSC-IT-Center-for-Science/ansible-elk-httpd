@@ -4,12 +4,14 @@
 
   - name: template in httpd config file
     template: src=httpd-logstash.conf.j2 dest=/etc/httpd/conf.d/logstash.conf owner=apache group=apache mode=0640 backup=yes
-    register: httpdconfig
+    notify:
+      - restart httpd
     when: ansible_os_family == "RedHat"
 
   - name: template in ssl config file if kibana4_https is set to on
     template: src=httpd-01ssl.conf.j2 dest=/etc/httpd/conf.d/01ssl.conf owner=apache group=apache mode=0640 backup=yes
-    register: httpdconfig2
+    notify:
+      - restart httpd
     when: ansible_os_family == "RedHat" and kibana4_https
 
   - name: write some garbage into ssl.conf - so it is not overwritten on httpd upgrades
@@ -32,9 +34,5 @@
     service: name={{item}} enabled=yes
     with_items: "{{ programs_on_boot }}"
 
-  - name: start httpd
+  - name: start and enable httpd
     service: name=httpd state=started enabled=yes
-
-  - name: restart httpd if httpdconfig or certs has changed
-    service: name=httpd state=restarted
-    when: httpdconfig.changed or httpdconfig2.changed
