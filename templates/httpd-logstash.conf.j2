@@ -84,8 +84,7 @@ Listen 8444
   </LocationMatch>
 
   # Proxy for demo-kibana-int/{dashboard,temp} stuff (if you don't want auth on /, then you will want these to be protected) - to only show DEMO dashboards
-  #<LocationMatch "^(/{{ esb }}-kibana4-int/dashboard/|/{{ esb }}-kibana4-int/temp).*$">
-  <LocationMatch "^(/{{ esb }}-kibana4-int|/{{ esb }}-kibana4-int/.*/).*$">
+  <LocationMatch "^(/{{ esb }}-kibana.*-int|/{{ esb }}-kibana.*-int/.*/).*$">
     ProxyPassMatch http://{{ es_address }}:9199
     ProxyPassReverse http://{{ es_address }}:9199
   </LocationMatch>
