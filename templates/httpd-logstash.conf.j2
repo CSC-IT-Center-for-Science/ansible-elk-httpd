@@ -21,7 +21,7 @@ LoadModule proxy_http_module modules/mod_proxy_http.so
 	ErrorLog logs/error_log
 	TransferLog logs/access_log
 	LogLevel warn
-	# Here is where Kibana, kibana config and dashboards are installed
+	# DocumentRoot is where Kibanai3, kibana config and dashboards were installed
         DocumentRoot /var/www/html/demo-kibana
 	<Directory "/">
 	    # Don't allow PUT or DELETE http commands
