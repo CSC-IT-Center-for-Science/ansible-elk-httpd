@@ -137,6 +137,12 @@ Listen 8444
     ProxyPassReverse http://localhost:9199
   </LocationMatch>
 
+  # xpack kibana 5.3 wants this..
+  <LocationMatch "^(/_xpack|/_xpack/.*)$">
+    ProxyPassMatch http://localhost:9199
+    ProxyPassReverse http://localhost:9199
+  </LocationMatch>
+
 </VirtualHost>
 
 Listen 443
